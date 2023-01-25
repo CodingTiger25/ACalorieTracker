@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+
 function App() {
+  
+  const [currCalories, setCurCalories] = useState(0);
+
+
+  const inputCal = () => {
+
+    let calories = prompt
+                ("Please enter calorie amount: ")
+
+    let cal = 0;
+
+    if(calories)
+    {
+        cal = parseInt(calories);
+        
+    }
+
+    setCurCalories(cal);
+}
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>  
+          Track your calories
       </header>
+
+      <h3>CALORIES</h3>
+
+      <button onClick={inputCal} >Set calorie goals for the day</button>
+      <p> {currCalories}</p>
     </div>
   );
 }
