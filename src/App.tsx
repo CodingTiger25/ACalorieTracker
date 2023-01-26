@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import './App.css';
+import styled from 'styled-components';
 
+const CalorieButton = styled.button`
+    color: orange;
+    size: 4rem;
+    `;
 
 function App() {
+ 
+  const [currCalories, setCurrCalories] = useState(0);
+
   
-  const [currCalories, setCurCalories] = useState(0);
 
 
   const inputCal = () => {
@@ -20,7 +27,7 @@ function App() {
         
     }
 
-    setCurCalories(cal);
+    setCurrCalories(cal);
 }
 
 
@@ -32,7 +39,10 @@ function App() {
 
       <h3>CALORIES</h3>
 
-      <button onClick={inputCal} >Set calorie goals for the day</button>
+      <CalorieButton onClick={inputCal}>
+        Set calorie goals for the day
+      </CalorieButton>
+      
       <p> {currCalories}</p>
     </div>
   );
