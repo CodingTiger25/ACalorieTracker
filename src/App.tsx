@@ -2,10 +2,38 @@ import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 
+const Title = styled.header`
+  color:black;
+  background-color: silver;
+  display: block;
+  padding: 3rem;
+  margin: 2rem;
+  font-weight: bold;
+  font-size: 2rem;
+`;
+
+
 const CalorieButton = styled.button`
     color: orange;
     size: 4rem;
-    `;
+
+ `;
+
+
+const Calories = styled.p`
+  size: 8rem;
+  display: center;
+
+
+`;
+
+const AddItems = styled.button`
+  size: 10rem;
+  color: black;
+
+`;
+
+
 
 function App() {
  
@@ -26,16 +54,20 @@ function App() {
         cal = parseInt(calories);
         
     }
-
     setCurrCalories(cal);
+}
+
+const EnterFood = () => {
+
+
 }
 
 
   return (
     <div className="App">
-      <header>  
+      <Title>  
           Track your calories
-      </header>
+      </Title>
 
       <h3>CALORIES</h3>
 
@@ -43,7 +75,12 @@ function App() {
         Set calorie goals for the day
       </CalorieButton>
       
-      <p> {currCalories}</p>
+      <Calories> {currCalories}
+      </Calories>
+
+      <AddItems>
+        Enter food item and calorie amount here
+      </AddItems>
     </div>
   );
 }
