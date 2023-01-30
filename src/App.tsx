@@ -33,6 +33,18 @@ const AddItems = styled.button`
 
 `;
 
+const ListItems = styled.input.attrs(props => ({
+  type: "text",
+
+  size: props.size || "15rem",
+
+}))`
+  
+  color: palevioletred;
+  font-size: 1em;
+  border: 5px solid palevioletred;
+`;
+
 
 
 function App() {
@@ -57,12 +69,6 @@ function App() {
     setCurrCalories(cal);
 }
 
-const EnterFood = () => {
-
-
-}
-
-
   return (
     <div className="App">
       <Title>  
@@ -78,9 +84,10 @@ const EnterFood = () => {
       <Calories> {currCalories}
       </Calories>
 
-      <AddItems>
-        Enter food item and calorie amount here
-      </AddItems>
+      <ListItems size= '10rem'>
+
+      </ListItems>
+      <button>Enter food</button>
     </div>
   );
 }
