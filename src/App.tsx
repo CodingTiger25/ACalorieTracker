@@ -2,29 +2,40 @@ import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 
-const Title = styled.header`
+const Title = styled.section`
+  color:black;
+  display: block;
+  position: relative;
+  left: 15%;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+`;
+
+const TitleColor = 
+
+styled.section`
   color:black;
   background-color: silver;
   display: block;
-  padding: 3rem;
-  margin: 2rem;
+  position: relative;
+  left: 15%;
   font-weight: bold;
   font-size: 2rem;
 `;
 
-
 const CalorieButton = styled.button`
     color: orange;
     size: 4rem;
+    position: center;
 
  `;
 
 
 const Calories = styled.p`
-  size: 8rem;
-  display: center;
-
-
+  font-size: 5rem;
+  color: black;
+  text-align: center;
 `;
 
 const AddItems = styled.button`
@@ -33,7 +44,8 @@ const AddItems = styled.button`
 
 `;
 
-const ListItems = styled.input.attrs(props => ({
+const ListItems = 
+styled.input.attrs(props => ({
   type: "text",
 
   size: props.size || "15rem",
@@ -45,14 +57,19 @@ const ListItems = styled.input.attrs(props => ({
   border: 5px solid palevioletred;
 `;
 
+const Background = styled.div`
 
+  background-color: #6868e7;
+  height: 100vh;
+  width: 100vw;
+`;
 
 function App() {
  
   const [currCalories, setCurrCalories] = useState(0);
 
-  
-
+  const [foodItem, setFoodItem] = useState({name:"",calories:""});
+  const [foodCalorie, setFoodCalorie] = useState([]);
 
   const inputCal = () => {
 
@@ -69,8 +86,33 @@ function App() {
     setCurrCalories(cal);
 }
 
+/*const inputFood = (event) => {
+
+    setFoodItem({...foodItem,
+      [event.target.name]: event.target.value});
+  
+};*/
+
+const handleSubmit = (e: any) => {
+  e.preventDefault();
+ 
+  setFoodItem({name:"", calories:""}); 
+  console.log(foodItem);
+};
+
+  const empty = (e:any) => {
+    e.preventDefault();
+    setFoodItem({name:"",calories:""});
+    console.log(foodItem);
+  }
+
+  const show =(e:any) => {
+    console.log(foodItem)
+  }
+
+
   return (
-    <div className="App">
+    <Background>
       <Title>  
           Track your calories
       </Title>
@@ -84,11 +126,24 @@ function App() {
       <Calories> {currCalories}
       </Calories>
 
-      <ListItems size= '10rem'>
+      <form onSubmit={handleSubmit}>
+      <label>Food item:
+      <input type="text" name ="name" value={foodItem.name} 
+        onChange={(e:any) => 
+              setFoodItem({...foodItem,name: e.target.value})}></input>
+      </label>
+      <label>Calories:
+      <input type="text" name = "calories" 
+      value={foodItem.calories}
+      onChange={(e:any) => setFoodItem({...foodItem,calories: e.target.value})}></input>
+      </label>
+      <button type="submit">Enter food</button>
+      </form>
 
-      </ListItems>
-      <button>Enter food</button>
-    </div>
+      <button onClick={empty}>Clean list</button>
+      <button onClick={show}>Show list</button>
+      
+    </Background>
   );
 }
 
