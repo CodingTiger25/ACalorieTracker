@@ -66,9 +66,9 @@ const Background = styled.div`
 
 function App() {
  
-  const [currCalories, setCurrCalories] = useState(0);
+  let [currCalories, setCurrCalories] = useState(0);
 
-  const [foodItem, setFoodItem] = useState({name:"",calories:""});
+  const [foodItem, setFoodItem] = useState({name:"",calories:0});
   const [foodCalorie, setFoodCalorie] = useState([]);
 
   const inputCal = () => {
@@ -96,17 +96,20 @@ function App() {
 const handleSubmit = (e: any) => {
   e.preventDefault();
  
-  setFoodItem({name:"", calories:""}); 
+  //setFoodItem({name:"", calories:""}); 
+  //setFoodItem(parseInt(foodItem.calories))
+  setCurrCalories( currCalories - foodItem.calories);
   console.log(foodItem);
 };
 
   const empty = (e:any) => {
     e.preventDefault();
-    setFoodItem({name:"",calories:""});
+    setFoodItem({name:"",calories:0});
     console.log(foodItem);
   }
 
   const show =(e:any) => {
+    e.preventDefault();
     console.log(foodItem)
   }
 
@@ -135,7 +138,8 @@ const handleSubmit = (e: any) => {
       <label>Calories:
       <input type="text" name = "calories" 
       value={foodItem.calories}
-      onChange={(e:any) => setFoodItem({...foodItem,calories: e.target.value})}></input>
+      onChange={(e:any) => setFoodItem({...foodItem,
+      calories: Number(e.target.value)})}></input>
       </label>
       <button type="submit">Enter food</button>
       </form>
