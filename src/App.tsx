@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+//import {reactLocalStorage} from 'reactjs-localstorage';
 import './App.css';
 import styled from 'styled-components';
 
@@ -44,18 +45,18 @@ const AddItems = styled.button`
 
 `;
 
-const ListItems = 
-styled.input.attrs(props => ({
+/*const ListItems = 
+styled.input.attrs(props:any => ({
   type: "text",
 
   size: props.size || "15rem",
 
-}))`
+}))` 
   
   color: palevioletred;
   font-size: 1em;
   border: 5px solid palevioletred;
-`;
+`;*/
 
 const Background = styled.div`
 
@@ -113,6 +114,10 @@ const handleSubmit = (e: any) => {
     console.log(foodItem)
   }
 
+
+useEffect(()=> {
+  localStorage.setItem('item', JSON.stringify(foodItem));
+})
 
   return (
     <Background>
