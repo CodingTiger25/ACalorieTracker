@@ -343,9 +343,17 @@ useEffect(() => {
   const data = JSON.parse(
     localStorage.getItem('calories') || '0');
     //Food list
-  let foodData = JSON.parse(
+  let breakfastData = JSON.parse(
     localStorage.getItem('foodlist') || '{}')
 
+  let lunchData = JSON.parse(
+    localStorage.getItem('lunchlist') || '{}')
+
+  let dinnerData = JSON.parse(
+    localStorage.getItem('dinnerlist') || '{}')
+
+  let snackData = JSON.parse(
+    localStorage.getItem('snacklist') || '{}')
     //Initial calorie input 
   let initCalo = JSON.parse(
     localStorage.getItem('InitCalorie') || '0'
@@ -356,7 +364,13 @@ useEffect(() => {
 
 
   setCurrCalories(data);
-  setBreakfastItem(foodData);
+
+  setBreakfastItem(breakfastData);
+  setLunchItem(lunchData);
+  setDinnerItem(dinnerData);
+  setSnackItem(snackData);
+
+
   setInitCalorie(initCalo);
   setUsedCalorie(totalCalories);
   localStorage.clear();
@@ -375,6 +389,18 @@ useEffect(()=> {
 useEffect(() => {
   localStorage.setItem('foodlist', JSON.stringify(breakfastItem));
 },[breakfastItem])
+
+useEffect(() => {
+  localStorage.setItem('lunchlist', JSON.stringify(lunchItem));
+},[lunchItem])
+
+useEffect(() => {
+  localStorage.setItem('dinnerlist', JSON.stringify(dinnerItem));
+},[dinnerItem])
+
+useEffect(() => {
+  localStorage.setItem('snacklist', JSON.stringify(snackItem));
+},[snackItem])
 
   return (
     <Background>
