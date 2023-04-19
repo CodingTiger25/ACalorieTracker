@@ -1,63 +1,11 @@
 import React, { useEffect, useState } from 'react';
-//import {reactLocalStorage} from 'reactjs-localstorage';
 import './App.css';
 import styled from 'styled-components';
 import {v4 as uuidv4} from 'uuid';
-const Title = styled.section`
-  color:black;
-  display: block;
-  position: relative;
-  left: 15%;
-  font-weight: bold;
-  font-size: 2rem;
-  text-align: center;
-`;
 
-const TitleColor = 
+import {Main, Title,CalorieButton,CalorieButtonText
+        ,Calories,Line,FoodBlock, TitleColor} from'./components/styles/Main.styled'
 
-styled.section`
-  color:black;
-  background-color: silver;
-  display: block;
-  position: relative;
-  left: 15%;
-  font-weight: bold;
-  font-size: 2rem;
-`;
-
-const CalorieButton = styled.button`
-    color: orange;
-    size: 4rem;
-    position: center;
-
- `;
-
-const Calories = styled.p`
-  font-size: 5rem;
-  color: black;
-  text-align: center;
-`;
-
-const AddItems = styled.button`
-  size: 10rem;
-  color: black;
-
-`;
-
-const Background = styled.div`
-
-  background-color: #6868e7;
-  height: 100%;
-  width: 100%;
-  padding: 5px;
-`;
-
-const Line = styled.div`
-  
-  height: 3px;
-  width: 100%;
-  background: black;
-`
 function App() {
  
   let [currCalories, setCurrCalories] = useState(0);
@@ -140,12 +88,7 @@ const changeCategory = (e:String) => {
             setUsedCalorie(usedCalo);
             localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalo)
             )
-    
-            console.log('used Calorie type: ', typeof(usedCalorie));
-            console.log('food Calorie type: ', typeof(foodCalorie));
-    
             
-            //let calo = currCalories;
           }
           else if(foodTime.localeCompare("l") === 0)
           {
@@ -158,9 +101,7 @@ const changeCategory = (e:String) => {
             setUsedCalorie(usedCalo);
             localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalo)
             )
-    
-            console.log('used Calorie type: ', typeof(usedCalorie));
-            console.log('food Calorie type: ', typeof(foodCalorie));
+
             }
             else if(foodTime.localeCompare("d") === 0)
           {
@@ -173,9 +114,7 @@ const changeCategory = (e:String) => {
             setUsedCalorie(usedCalo);
             localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalo)
             )
-    
-            console.log('used Calorie type: ', typeof(usedCalorie));
-            console.log('food Calorie type: ', typeof(foodCalorie));
+  
             }
             else if(foodTime.localeCompare("s") === 0)
           {
@@ -188,9 +127,6 @@ const changeCategory = (e:String) => {
             setUsedCalorie(usedCalo);
             localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalo)
             )
-    
-            console.log('used Calorie type: ', typeof(usedCalorie));
-            console.log('food Calorie type: ', typeof(foodCalorie));
             }
           }
         }
@@ -374,8 +310,6 @@ useEffect(() => {
   setInitCalorie(initCalo);
   setUsedCalorie(totalCalories);
   localStorage.clear();
-  // console.log('this is' , foodData);
-  // console.log('data',data);
 },[])
 
 useEffect(()=> {
@@ -403,13 +337,13 @@ useEffect(() => {
 },[snackItem])
 
   return (
-    <Background>
+    <Main>
       <Title>  
           Track your calories
       </Title>
       
       <CalorieButton onClick={inputCal}>
-        Set calorie goals for the day
+        <CalorieButtonText>Set calorie limit</CalorieButtonText>
       </CalorieButton>
       <h3>CALORIES REMAINING</h3>
 
@@ -417,30 +351,13 @@ useEffect(() => {
       <Calories>
         {initCalorie} - {usedCalorie} = {currCalories}
       </Calories>
-      
+      <FoodBlock>
 
-      
-      {/* <form onSubmit={handleSubmit}>
-      <label>Food item:
-      <input type="text" name ="foodName" defaultValue={''} 
-        onChange={(e:any) => 
-              setFoodName(e.target.value)}></input>
-      </label>
-      <label>Calories:
-      <input type="text" name = "foodCalorie" 
-      defaultValue={0}
-      onChange={(e:any) => setFoodCalorie(parseInt(
-      e.target.value))}></input>
-      </label>
-      <button type="submit">Enter food</button>
-      </form> */}
-
-      {/* <button onClick={empty}>Clean list</button>
-      <button onClick={show}>Show list</button> */}
-      
+      <TitleColor>
         <h1>
           Breakfast
         </h1>
+      </TitleColor>
         {displayBreakfastItems(breakfastItem)}
         <button onClick={() => displayForm("b")}>ADD ITEM</button>
         <button onClick={() => {empty("b")}}>CLEAR</button>
@@ -462,39 +379,44 @@ useEffect(() => {
           </form>
 
       )}
+      </FoodBlock>
         <Line></Line>
-        <div>
-        <h1>
-          Lunch
-        </h1>
-        {displayLunchItems(lunchItem)}
-        <button onClick={() => displayForm("l")}>ADD ITEM</button>
-        <button onClick={() => {empty("l")}}>CLEAR</button>
+        <FoodBlock>
+          <div>
+          <TitleColor>
+            <h1>
+              Lunch
+            </h1>
+          </TitleColor>
+          {displayLunchItems(lunchItem)}
+          <button onClick={() => displayForm("l")}>ADD ITEM</button>
+          <button onClick={() => {empty("l")}}>CLEAR</button>
 
-        {showForm && lunch && (
-          <form onSubmit={(e) => handleSubmit(e)}>
-          <label>Food item:
-          <input type="text" name ="foodName" //defaultValue={''} 
-            onChange={(e:any) => 
-                  setFoodName(e.target.value)}></input>
-          </label>
-          <label>Calories:
-          <input type="text" name = "foodCalorie" 
-          defaultValue={0}
-          onChange={(e:any) => setFoodCalorie(parseInt(
-          e.target.value))}></input>
-          </label>
-          <button type="submit" onClick={() => {changeCategory("l")}}>Enter food</button>
-          </form>)}
-          </div>
-        
+          {showForm && lunch && (
+            <form onSubmit={(e) => handleSubmit(e)}>
+            <label>Food item:
+            <input type="text" name ="foodName" //defaultValue={''} 
+              onChange={(e:any) => 
+                    setFoodName(e.target.value)}></input>
+            </label>
+            <label>Calories:
+            <input type="text" name = "foodCalorie" 
+            defaultValue={0}
+            onChange={(e:any) => setFoodCalorie(parseInt(
+            e.target.value))}></input>
+            </label>
+            <button type="submit" onClick={() => {changeCategory("l")}}>Enter food</button>
+            </form>)}
+            </div>
+          </FoodBlock>
         <Line></Line>
+        <FoodBlock>
         <div>
-
-        
-        <h1>
-          Dinner
-        </h1>
+        <TitleColor>
+          <h1>
+            Dinner
+          </h1>
+        </TitleColor>
         {displayDinnerItems(dinnerItem)}
         <button onClick={() => {displayForm("d")}}>ADD ITEM</button>
         <button onClick={() => {empty("d")}}>CLEAR</button>
@@ -515,11 +437,15 @@ useEffect(() => {
           </form>)}
         <Line></Line>
         </div>
+        </FoodBlock>
         <p>
-          
-        <h1>
-          Snack
-        </h1>
+
+      <FoodBlock>
+        <TitleColor>
+          <h1>
+            Snack
+          </h1>
+        </TitleColor> 
         {displaySnackItems(snackItem)}
         <button onClick={() => {displayForm("s")}}>ADD ITEM</button>
         <button onClick={() => {empty("s")}}>CLEAR</button>
@@ -538,14 +464,12 @@ useEffect(() => {
           </label>
           <button type="submit" onClick={() => {changeCategory("s")}}>Enter food</button>
           </form>)}
-        <Line></Line>
-
-        
-        
+        <Line></Line>  
+        </FoodBlock>    
         </p>
       
       
-    </Background>
+    </Main>
   );
 }
 
