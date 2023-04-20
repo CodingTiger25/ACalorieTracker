@@ -135,7 +135,8 @@ const changeCategory = (e:String) => {
       return breakfastItem.map((foods)=> (
     
         <div>
-          <h1>{foods.name}  {foods.calories} <button onClick={() => {remove(foods.id,"b")
+          <h1>{foods.name}  {foods.calories} <button 
+          onClick={(event) => {remove(event,foods.id,"b",foods.calories)
 
           }}>Remove</button>
               {/* <button onClick={() => remove(foods.id)}>X</button> */}
@@ -148,10 +149,10 @@ const changeCategory = (e:String) => {
     return lunchItem.map((lunchFoods)=> (
   
       <div>
-        <h1>{lunchFoods.name}  {lunchFoods.calories} <button onClick={() => {remove(lunchFoods.id,"l")
+        <h1>{lunchFoods.name}  {lunchFoods.calories} 
+        <button onClick={(event) => {remove(event,lunchFoods.id,"l",lunchFoods.calories)
 
 }}>Remove</button>
-            {/* <button onClick={() => remove(foods.id)}>X</button> */}
         </h1>
       </div>
     ))
@@ -161,7 +162,8 @@ function displayDinnerItems(List:any) {
   return dinnerItem.map((dinnerFoods)=> (
 
     <div>
-      <h1>{dinnerFoods.name}  {dinnerFoods.calories} <button onClick={() => {remove(dinnerFoods.id,"d")
+      <h1>{dinnerFoods.name}  {dinnerFoods.calories} <button onClick={(event) => 
+      {remove(event, dinnerFoods.id,"d",dinnerFoods.calories)
 
 }}>Remove</button>
           {/* <button onClick={() => remove(foods.id)}>X</button> */}
@@ -174,7 +176,8 @@ function displaySnackItems(List:any) {
   return snackItem.map((snackFoods)=> (
 
     <div>
-      <h1>{snackFoods.name}  {snackFoods.calories} <button onClick={() => {remove(snackFoods.id,"s")
+      <h1>{snackFoods.name}  {snackFoods.calories} 
+      <button onClick={(event) => {remove(event,snackFoods.id,"s", snackFoods.calories)
 
 }}>Remove</button>
           {/* <button onClick={() => remove(foods.id)}>X</button> */}
@@ -184,35 +187,50 @@ function displaySnackItems(List:any) {
 } 
 
   
-  const remove = (e:string,r:string) => {
+  const remove = (a:any ,e:string,r:string,f:number) => {
+
+    a.preventDefault();
+
 
     if(r.localeCompare("b") === 0)
     {
       const newList = breakfastItem.filter(foodL => foodL.id != e);
+      let subbedCalories = currCalories + f;
+      let usedCalories   = usedCalorie - f;
+      setCurrCalories(subbedCalories);
+      setUsedCalorie(usedCalories);
       setBreakfastItem(newList);
-      window.location.reload();
-      console.log('Removed from list ', breakfastItem);
+      //window.location.reload();
     }
     else if(r.localeCompare("l") === 0)
     {
       const newList = lunchItem.filter(foodL => foodL.id != e);
+      let subbedCalories = currCalories + f;
+      let usedCalories   = usedCalorie - f;
+      setCurrCalories(subbedCalories);
+      setUsedCalorie(usedCalories);
       setLunchItem(newList);
-      window.location.reload();
-      console.log('Removed from list ', lunchItem);
+      //window.location.reload();
     }
     else if(r.localeCompare("d") === 0)
     {
       const newList = dinnerItem.filter(foodL => foodL.id != e);
+      let subbedCalories = currCalories + f;
+      let usedCalories   = usedCalorie - f;
+      setCurrCalories(subbedCalories);
+      setUsedCalorie(usedCalories);
       setDinnerItem(newList);
-      window.location.reload();
-      console.log('Removed from list ', dinnerItem);
+      //window.location.reload();
     }
    else if(r.localeCompare("s") === 0)
     {
       const newList = snackItem.filter(foodL => foodL.id != e);
+      let subbedCalories = currCalories + f;
+      let usedCalories   = usedCalorie - f;
+      setCurrCalories(subbedCalories);
+      setUsedCalorie(usedCalories);
       setSnackItem(newList);
-      window.location.reload();
-      console.log('Removed from list ', snackItem);
+      //window.location.reload();
     }
       
   }
@@ -249,6 +267,8 @@ function displaySnackItems(List:any) {
       setBreakfast(!breakfast);
       setShowForm(!showForm);
       setLunch(false);
+      setDinner(false);
+      setSnack(false);
     }
     else if(e.localeCompare("l") === 0)
     {
@@ -258,14 +278,14 @@ function displaySnackItems(List:any) {
     }
     else if(e.localeCompare("d") === 0)
     {
-      setDinner(!dinner);
+      setDinner(true);
       setShowForm(!showForm);
       setBreakfast(false);
       setLunch(false);
     }
     else if(e.localeCompare("s") === 0)
     {
-      setSnack(!snack);
+      setSnack(true);
       setShowForm(!showForm);
       setBreakfast(false);
       setLunch(false);
