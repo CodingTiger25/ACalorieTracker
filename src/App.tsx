@@ -200,6 +200,8 @@ function displaySnackItems(List:any) {
       setCurrCalories(subbedCalories);
       setUsedCalorie(usedCalories);
       setBreakfastItem(newList);
+      localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalories))
+
       //window.location.reload();
     }
     else if(r.localeCompare("l") === 0)
@@ -210,6 +212,8 @@ function displaySnackItems(List:any) {
       setCurrCalories(subbedCalories);
       setUsedCalorie(usedCalories);
       setLunchItem(newList);
+      localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalories))
+
       //window.location.reload();
     }
     else if(r.localeCompare("d") === 0)
@@ -220,6 +224,8 @@ function displaySnackItems(List:any) {
       setCurrCalories(subbedCalories);
       setUsedCalorie(usedCalories);
       setDinnerItem(newList);
+      localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalories))
+
       //window.location.reload();
     }
    else if(r.localeCompare("s") === 0)
@@ -230,6 +236,8 @@ function displaySnackItems(List:any) {
       setCurrCalories(subbedCalories);
       setUsedCalorie(usedCalories);
       setSnackItem(newList);
+      localStorage.setItem('usedUpCalorie', JSON.stringify(usedCalories))
+
       //window.location.reload();
     }
       
@@ -315,11 +323,14 @@ useEffect(() => {
     localStorage.getItem('InitCalorie') || '0'
   )
 
+    //Calories used
+  //let usedCalories = JSON.parse(localStorage.getItem(''))
+
   //Total amount of calories used
   let totalCalories = JSON.parse(localStorage.getItem('usedUpCalorie') || '0');
 
 
-  setCurrCalories(data);
+ 
 
   setBreakfastItem(breakfastData);
   setLunchItem(lunchData);
@@ -329,7 +340,10 @@ useEffect(() => {
 
   setInitCalorie(initCalo);
   setUsedCalorie(totalCalories);
+  setCurrCalories(data);
   localStorage.clear();
+
+  console.log('Amount of calo used: ', breakfastData)
 },[])
 
 useEffect(()=> {
