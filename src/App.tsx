@@ -3,6 +3,7 @@ import './App.css';
 import styled from 'styled-components';
 import {v4 as uuidv4} from 'uuid';
 
+import { Nav } from './components/styles/Nav.styled';
 import {Main, Title,CalorieButton,CalorieButtonText
         ,Calories,Line,FoodBlock, TitleColor} from'./components/styles/Main.styled'
 
@@ -372,10 +373,11 @@ useEffect(() => {
 
   return (
     <Main>
-      <Title>  
-          Track your calories
-      </Title>
-      
+      <Nav>
+        <Title>  
+            Track your calories
+        </Title>
+      </Nav>
       <CalorieButton onClick={inputCal}>
         <CalorieButtonText>Set calorie limit</CalorieButtonText>
       </CalorieButton>
@@ -414,7 +416,7 @@ useEffect(() => {
 
       )}
       </FoodBlock>
-        <Line></Line>
+   
         <FoodBlock>
           <div>
           <TitleColor>
@@ -443,7 +445,6 @@ useEffect(() => {
             </form>)}
             </div>
           </FoodBlock>
-        <Line></Line>
         <FoodBlock>
         <div>
         <TitleColor>
@@ -469,7 +470,6 @@ useEffect(() => {
           </label>
           <button type="submit" onClick={() => {changeCategory("d")}}>Enter food</button>
           </form>)}
-        <Line></Line>
         </div>
         </FoodBlock>
         <p>
@@ -498,7 +498,6 @@ useEffect(() => {
           </label>
           <button type="submit" onClick={() => {changeCategory("s")}}>Enter food</button>
           </form>)}
-        <Line></Line>  
         </FoodBlock>    
         </p>
       
