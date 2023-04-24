@@ -5,7 +5,7 @@ import {v4 as uuidv4} from 'uuid';
 
 import { Nav } from './components/styles/Nav.styled';
 import {Main, Title,CalorieButton,CalorieButtonText
-        ,Calories,Line,FoodBlock, TitleColor} from'./components/styles/Main.styled'
+        ,Calories,Line,FoodBlock, TitleColor,CalorieBlock, CalorieBudget, CalorieLeft, CalorieBudgetNum, CaloriesLeftUsed, CalorieUsedNum, MinusButton, EqualsButton} from'./components/styles/Main.styled'
 
 function App() {
  
@@ -383,10 +383,23 @@ useEffect(() => {
       </CalorieButton>
       <h3>CALORIES REMAINING</h3>
 
-
-      <Calories>
-        {initCalorie} - {usedCalorie} = {currCalories}
-      </Calories>
+      <CalorieBlock>
+        <Calories>
+          <CalorieBudget>Budget</CalorieBudget>
+            <CalorieLeft>Calories Left</CalorieLeft>
+            
+              <CalorieBudgetNum>{initCalorie}</CalorieBudgetNum> 
+                 
+                <MinusButton>-</MinusButton> 
+                
+                <CalorieUsedNum>{usedCalorie}</CalorieUsedNum> 
+                
+                <EqualsButton>=</EqualsButton>
+    
+              <CaloriesLeftUsed>{currCalories}</CaloriesLeftUsed>
+              
+        </Calories>
+      </CalorieBlock>  
       <FoodBlock>
 
       <TitleColor>
