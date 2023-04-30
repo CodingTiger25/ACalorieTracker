@@ -381,8 +381,7 @@ useEffect(() => {
       <CalorieButton onClick={inputCal}>
         <CalorieButtonText>Set calorie limit</CalorieButtonText>
       </CalorieButton>
-      <h3>CALORIES REMAINING</h3>
-
+      
       <CalorieBlock>
         <Calories>
           <CalorieBudget>Budget</CalorieBudget>
